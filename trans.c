@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
     }     // end while
 
     fclose(cfPtr); // fclose closes the file
+    return 0;
 } // end main
 
 // create formatted text file for printing
