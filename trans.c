@@ -83,7 +83,7 @@ void textFile(FILE *readPtr)
 
         // copy all records from random-access file into text file
         while ((result = fread(&client, sizeof(struct clientData), 1, readPtr)) != 0)
-      {
+        {
 
             // write single record to text file
             if (result != 0 && client.acctNum != 0)
