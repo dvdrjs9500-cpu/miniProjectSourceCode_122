@@ -74,6 +74,7 @@ void textFile(FILE *readPtr)
     if ((writePtr = fopen("accounts.txt", "w")) == NULL)
     {
         puts("File could not be opened.");
+        return;
     } // end if
     else
     {
