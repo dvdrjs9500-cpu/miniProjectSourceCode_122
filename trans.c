@@ -81,9 +81,8 @@ void textFile(FILE *readPtr)
         fprintf(writePtr, "%-6s%-16s%-11s%10s\n", "Acct", "Last Name", "First Name", "Balance");
 
         // copy all records from random-access file into text file
-        while (!feof(readPtr))
-        {
-            result = fread(&client, sizeof(struct clientData), 1, readPtr);
+        while ((result = fread(&client, sizeof(struct clientData), 1, readPtr)) != 0)
+      {
 
             // write single record to text file
             if (result != 0 && client.acctNum != 0)
