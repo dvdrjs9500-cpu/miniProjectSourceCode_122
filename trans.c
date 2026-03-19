@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     }
 
     // enable user to specify action
-    while ((choice = enterChoice()) != 6)
+    while ((choice = enterChoice()) != 7)
     {
         switch (choice)
         {
@@ -58,6 +58,10 @@ int main(int argc, char *argv[])
         // display total balance
         case 5:
             totalBalance(cfPtr);
+            break;
+        //search by name
+        case 6:
+            searchByName(cfPtr);
             break;
         default:
             puts("Incorrect choice");
