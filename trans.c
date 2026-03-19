@@ -238,3 +238,25 @@ unsigned int enterChoice(void)
     scanf("%u", &menuChoice); // receive choice from user
     return menuChoice;
 } // end function enterChoice
+
+// display total balance of all accounts
+void totalBalance(FILE *fPtr)
+{
+    struct clientData client = {0, "", "", 0.0};
+    double total = 0.0;
+    int count = 0;
+
+    rewind(fPtr); // go to beginning of file
+
+    while (fread(&client, sizeof(struct clientData), 1, fPtr) != 0)
+    {
+        if (client.acctNum != 0)
+        {
+            total += client.balance;
+            count++;
+        }
+    }
+
+    printf("\nTotal active accounts: %d\n", count);
+    printf("Total balance        : $%.2f\n", total);
+} // end function totalBalance
