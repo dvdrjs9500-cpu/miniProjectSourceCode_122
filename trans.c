@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     }
 
     // enable user to specify action
-    while ((choice = enterChoice()) != 5)
+    while ((choice = enterChoice()) != 6)
     {
         switch (choice)
         {
@@ -54,6 +54,10 @@ int main(int argc, char *argv[])
             deleteRecord(cfPtr);
             break;
         // display if user does not select valid choice
+        // display total balance
+        case 5:
+            totalBalance(cfPtr);
+            break;
         default:
             puts("Incorrect choice");
             break;
