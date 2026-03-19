@@ -227,12 +227,13 @@ unsigned int enterChoice(void)
     unsigned int menuChoice; // variable to store user's choice
     // display available options
     printf("%s", "\nEnter your choice\n"
-                 "1 - store a formatted text file of accounts called\n"
-                 "    \"accounts.txt\" for printing\n"
-                 "2 - update an account\n"
-                 "3 - add a new account\n"
-                 "4 - delete an account\n"
-                 "5 - end program\n? ");
+             "1 - store a formatted text file of accounts called\n"
+             "    \"accounts.txt\" for printing\n"
+             "2 - update an account\n"
+             "3 - add a new account\n"
+             "4 - delete an account\n"
+             "5 - display total balance\n"
+             "6 - end program\n? ");
 
     scanf("%u", &menuChoice); // receive choice from user
     return menuChoice;
