@@ -19,6 +19,7 @@ void updateRecord(FILE *fPtr);
 void newRecord(FILE *fPtr);
 void deleteRecord(FILE *fPtr);
 void totalBalance(FILE *fPtr);
+void searchByName(FILE *fPtr);
 
 int main(int argc, char *argv[])
 {
