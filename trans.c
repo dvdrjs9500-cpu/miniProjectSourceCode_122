@@ -3,6 +3,7 @@
 // be placed in the file, and deletes data previously in the file.
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 // clientData structure definition
 struct clientData
 {
@@ -21,7 +22,7 @@ void deleteRecord(FILE *fPtr);
 void totalBalance(FILE *fPtr);
 void searchByName(FILE *fPtr);
 
-int main(int argc, char *argv[])
+int main(void)
 {
     FILE *cfPtr;         // credit.dat file pointer
     unsigned int choice; // user's choice
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
     // fopen opens the file; exits if file cannot be opened
     if ((cfPtr = fopen("credit.dat", "rb+")) == NULL)
     {
-        printf("%s: File could not be opened.\n", argv[0]);
+        printf("%s: File could not be opened.\n");
         exit(-1);
     }
 
@@ -126,7 +127,7 @@ void updateRecord(FILE *fPtr)
     }
 
     // move file pointer to correct record in file
-    fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
+    fseek(fPtr, (long)((account - 1) * sizeof(struct clientData)), SEEK_SET);
     // read record from file
     fread(&client, sizeof(struct clientData), 1, fPtr);
     // display error if account does not exist
@@ -266,3 +267,31 @@ void totalBalance(FILE *fPtr)
     printf("\nTotal active accounts: %d\n", count);
     printf("Total balance        : $%.2f\n", total);
 } // end function totalBalance
+// search for account by name
+void searchByName(FILE *fPtr)
+{
+    struct clientData client = {0, "", "", 0.0};
+    char lastName[15]; // last name to search for
+    int found = 0;
+
+    // obtain last name to search for
+    printf("%s", "Enter last name to search for: ");
+    scanf("%14s", lastName);
+
+    rewind(fPtr); // set pointer to beginning of file
+
+    // search through file for matching name
+    while (fread(&client, sizeof(struct clientData), 1, fPtr) != 0)
+    {
+        if (client.acctNum != 0 && strcmp(client.lastName, lastName) == 0)
+        {
+            printf("%-6d%-16s%-11s%10.2f\n", client.acctNum, client.lastName, client.firstName, client.balance);
+            found = 1;
+        }
+    }
+
+    if (!found)
+    {
+        printf("No account with last name \"%s\" found.\n", lastName);
+    }
+} // end function searchByName
